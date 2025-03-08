@@ -218,7 +218,7 @@ func UpdateRef(sp interface{}, key string, ref spec.Ref) error {
 		debugLog("rewriting holder for %T", refable)
 		_, entry, pvalue, erp := getParentFromKey(sp, key)
 		if erp != nil {
-			return err
+			return erp
 		}
 		switch container := pvalue.(type) {
 		case spec.Definitions:
@@ -272,7 +272,7 @@ func UpdateRefWithSchema(sp *spec.Swagger, key string, sch *spec.Schema) error {
 	case spec.Schema:
 		_, entry, pvalue, erp := getParentFromKey(sp, key)
 		if erp != nil {
-			return err
+			return erp
 		}
 		switch container := pvalue.(type) {
 		case spec.Definitions:
